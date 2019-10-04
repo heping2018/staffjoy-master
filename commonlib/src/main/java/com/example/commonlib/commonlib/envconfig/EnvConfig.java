@@ -27,6 +27,9 @@ public class EnvConfig {
     @Setter(AccessLevel.NONE)
     private static Map<String,EnvConfig> map = new HashMap<String,EnvConfig>();
     static {
+        /*
+        开发环境
+         */
         EnvConfig envConfig = EnvConfig.builder().name(EnvConstant.ENV_DEV)
                 .debug(true)
                 .externalApex("staffjoy.local")
@@ -34,5 +37,47 @@ public class EnvConfig {
                 .schame("http")
                 .build();
         map.put(EnvConstant.ENV_DEV,envConfig);
+        /*
+        测试环境
+         */
+        envConfig = EnvConfig.builder().name(EnvConstant.ENV_TEST)
+                .debug(true)
+                .externalApex("staffjoy.local")
+                .internalApex(EnvConstant.ENV_TEST)
+                .schame("http")
+                .build();
+        map.put(EnvConstant.ENV_TEST,envConfig);
+
+        /*
+        准生产环境
+         */
+        envConfig = EnvConfig.builder().name(EnvConstant.ENV_UAT)
+                .debug(true)
+                .externalApex("staffjoy.local")
+                .internalApex(EnvConstant.ENV_UAT)
+                .schame("https")
+                .build();
+        map.put(EnvConstant.ENV_UAT,envConfig);
+
+        /*
+        生产环境
+         */
+        envConfig = EnvConfig.builder().name(EnvConstant.ENV_PROD)
+                .debug(true)
+                .externalApex("staffjoy.local")
+                .internalApex(EnvConstant.ENV_PROD)
+                .schame("https")
+                .build();
+        map.put(EnvConstant.ENV_PROD,envConfig);
+
+    }
+
+    public static EnvConfig getLocalEnv(String env){
+        EnvConfig envConfig = map.get(env);
+        if(envConfig == null){
+            env = EnvConstant.ENV_DEV;
+            envConfig = map.get(env);
+        }
+        return envConfig;
     }
 }
