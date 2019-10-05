@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * 静态地址映射类
+ */
 @Setter
 @ToString
 @Getter
@@ -15,7 +18,20 @@ public class MappingPropertise {
 
     private String name;
     private String host;
+    /*
+    目标地址集合
+     */
     private List<String> destinations = new ArrayList<>();
+
+
+    public MappingPropertise copy(){
+        MappingPropertise mappingPropertise = new MappingPropertise();
+        mappingPropertise.setHost(this.host);
+        mappingPropertise.setName(this.name);
+        mappingPropertise.setDestinations(this.destinations);
+        return mappingPropertise;
+
+    }
 
 
     @NoArgsConstructor
