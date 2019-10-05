@@ -3,6 +3,7 @@ package com.example.staffjoy.faraday.config;
 
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 @Getter
 @Setter
 public class FaradayPropertise {
+    @NestedConfigurationProperty
     private List<MappingPropertise> mappingPropertise = new ArrayList<>();
+
+
 
 }
