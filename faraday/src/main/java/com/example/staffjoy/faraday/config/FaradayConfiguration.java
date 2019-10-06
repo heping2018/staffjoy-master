@@ -1,10 +1,13 @@
 package com.example.staffjoy.faraday.config;
 
+import com.example.commonlib.commonlib.envconfig.EnvConfig;
 import com.example.staffjoy.faraday.filter.FavinconFliter;
 import com.example.staffjoy.faraday.filter.HealthCheckFliter;
+import com.example.staffjoy.faraday.filter.SecurityFilter;
 import com.example.staffjoy.faraday.view.AsessLoader;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
@@ -17,6 +20,7 @@ public class FaradayConfiguration {
      * 注册健康检查过滤器
      * @return
      */
+    @Bean
     public FilterRegistrationBean<HealthCheckFliter> healthCheckFliterFilterRegistrationBean(){
         FilterRegistrationBean<HealthCheckFliter> healthCheckFliterFilterRegistrationBean =
                 new FilterRegistrationBean<>(new HealthCheckFliter());
@@ -28,11 +32,21 @@ public class FaradayConfiguration {
      * 注册favincon 过滤器
      * @return
      */
+    @Bean
     public FilterRegistrationBean<FavinconFliter> favinconFliterFilterRegistrationBean(){
         FilterRegistrationBean<FavinconFliter> favinconFliterFilterRegistrationBean = new
                 FilterRegistrationBean<>(new FavinconFliter(AsessLoader.favinconBytes));
         favinconFliterFilterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 78);
         return favinconFliterFilterRegistrationBean;
+    }
+    /**
+     * 注册http过滤器
+     */
+    public FilterRegistrationBean<SecurityFilter> securityFilterFilterRegistrationBean(EnvConfig envConfig){
+        FilterRegistrationBean<SecurityFilter> securityFilterFilterRegistrationBean = new
+                FilterRegistrationBean<>(new SecurityFilter(envConfig));
+        securityFilterFilterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 80);
+        return securityFilterFilterRegistrationBean;
     }
 
 
