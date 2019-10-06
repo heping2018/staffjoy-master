@@ -23,24 +23,50 @@ public class MappingPropertise {
      */
     private List<String> destinations = new ArrayList<>();
 
+    private TimeOutPropertise timeOutPropertise;
 
     public MappingPropertise copy(){
         MappingPropertise mappingPropertise = new MappingPropertise();
         mappingPropertise.setHost(this.host);
         mappingPropertise.setName(this.name);
         mappingPropertise.setDestinations(this.destinations);
+        mappingPropertise.setTimeOutPropertise(this.timeOutPropertise);
         return mappingPropertise;
 
     }
 
-
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Getter
-    @Setter
-    @ToString
-    private static class TimeOutPropertise{
+    /**
+     * 私有类型 外部无法引用
+     */
+    public static class TimeOutPropertise{
+        //session超时时间
         private int connect = 20000;
         private int read = 20000;
+
+        public void setConnect(int connect){
+            this.connect = connect;
+        }
+        public int getConnect(){
+            return connect;
+        }
+        public void setRead(int read){
+            this.read = read;
+        }
+        public int getRead(){
+            return read;
+        }
+        @Override
+        public String toString(){
+            return new StringBuilder("TimeOutPropertise : ")
+                    .append("{ " +
+                            "connect :")
+                    .append(connect)
+                    .append(", ")
+                    .append("read :")
+                    .append(read)
+                    .append("}")
+                    .toString();
+        }
+
     }
 }
