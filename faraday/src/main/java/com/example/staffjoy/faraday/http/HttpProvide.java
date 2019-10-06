@@ -22,7 +22,7 @@ public class HttpProvide {
      * @param mappingPropertiseList
      */
     public void updateHttpClient(List<MappingPropertise> mappingPropertiseList){
-        mappingPropertiseList.stream().collect(toMap(MappingPropertise :: getName,this :: createRestTemplat));
+        httpMap = mappingPropertiseList.stream().collect(toMap(MappingPropertise :: getName,this :: createRestTemplat));
     }
 
     private RestTemplate createRestTemplat(MappingPropertise mappingPropertise){
