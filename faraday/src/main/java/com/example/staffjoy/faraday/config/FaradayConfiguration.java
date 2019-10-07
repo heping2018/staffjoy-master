@@ -3,8 +3,10 @@ package com.example.staffjoy.faraday.config;
 import com.example.commonlib.commonlib.envconfig.EnvConfig;
 import com.example.staffjoy.faraday.filter.FavinconFliter;
 import com.example.staffjoy.faraday.filter.HealthCheckFliter;
+import com.example.staffjoy.faraday.filter.NakeDomianFilter;
 import com.example.staffjoy.faraday.filter.SecurityFilter;
 import com.example.staffjoy.faraday.view.AsessLoader;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +44,7 @@ public class FaradayConfiguration {
     /**
      * 注册http过滤器
      */
+    @Bean
     public FilterRegistrationBean<SecurityFilter> securityFilterFilterRegistrationBean(EnvConfig envConfig){
         FilterRegistrationBean<SecurityFilter> securityFilterFilterRegistrationBean = new
                 FilterRegistrationBean<>(new SecurityFilter(envConfig));
@@ -49,5 +52,15 @@ public class FaradayConfiguration {
         return securityFilterFilterRegistrationBean;
     }
 
+    /**
+     * 注册默认登录
+     */
+    @Bean
+    public FilterRegistrationBean<NakeDomianFilter> nakeDomianFilterFilterRegistrationBean(EnvConfig envConfig){
+        FilterRegistrationBean<NakeDomianFilter> nakeDomianFilterFilterRegistrationBean = new
+                FilterRegistrationBean<>(new NakeDomianFilter(envConfig));
+        nakeDomianFilterFilterRegistrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE + 90);
+        return nakeDomianFilterFilterRegistrationBean;
+    }
 
 }

@@ -10,4 +10,6 @@ public class FaradayApplication {
         SpringApplication.run(FaradayApplication.class, args);
     }
 
+
+
 }
