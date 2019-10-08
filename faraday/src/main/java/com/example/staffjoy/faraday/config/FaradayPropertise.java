@@ -16,6 +16,8 @@ import java.util.List;
 public class FaradayPropertise {
     @NestedConfigurationProperty
     private List<MappingPropertise> mappingPropertise = new ArrayList<>();
+    @NestedConfigurationProperty
+    private TracingProperties tracing = new TracingProperties();
 
 
 
