@@ -6,6 +6,7 @@ import com.example.staffjoy.faraday.http.HttpProvide;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class ConfigrutionMappingProvider extends  MappingProvider{
     }
 
     @Override
-    public boolean shouldupdate(HttpRequest httpRequest) {
+    public boolean shouldupdate(HttpServletRequest httpRequest) {
         return false;
     }
 

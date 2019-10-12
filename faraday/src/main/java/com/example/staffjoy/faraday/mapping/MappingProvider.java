@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpRequest;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,8 +36,8 @@ public abstract class MappingProvider {
 
 
 
-    public MappingPropertise resolverMapping(String host, HttpRequest httpRequest){
-        if(shouldupdate(httpRequest)){
+    public MappingPropertise resolverMapping(String host, HttpServletRequest httpServletRequest){
+        if(shouldupdate(httpServletRequest)){
             updateMap();
         }
         List<MappingPropertise> mappingPropertiseList1 = mappingPropertiseList.stream()
@@ -64,7 +65,7 @@ public abstract class MappingProvider {
         }
     }
 
-    public abstract boolean shouldupdate(HttpRequest httpRequest);
+    public abstract boolean shouldupdate(HttpServletRequest httpServletRequest);
 
 
     public abstract List<MappingPropertise> retrieveMappings();

@@ -8,6 +8,7 @@ import com.example.staffjoy.faraday.config.MappingPropertise;
 import com.example.staffjoy.faraday.http.HttpProvide;
 import org.springframework.http.HttpRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +29,7 @@ public class ProgrammaticMappingsProvider  extends  MappingProvider{
     }
 
     @Override
-    public boolean shouldupdate(HttpRequest httpRequest) {
+    public boolean shouldupdate(HttpServletRequest httpRequest) {
         return false;
     }
 

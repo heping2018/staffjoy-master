@@ -18,6 +18,8 @@ public class FaradayPropertise {
     private List<MappingPropertise> mappingPropertise = new ArrayList<>();
     @NestedConfigurationProperty
     private TracingProperties tracing = new TracingProperties();
+    @NestedConfigurationProperty
+    private MeterPropertise meterPropertise;
 
 
 

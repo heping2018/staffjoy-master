@@ -1,6 +1,7 @@
 package com.example.staffjoy.faraday.http;
 
 import com.example.staffjoy.faraday.config.MappingPropertise;
+import lombok.Getter;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -13,6 +14,7 @@ import static java.util.stream.Collectors.toMap;
 
 import static org.apache.http.impl.client.HttpClientBuilder.create;
 
+@Getter
 public class HttpProvide {
 
     private Map<String,RestTemplate> httpMap = new HashMap<String,RestTemplate>();
