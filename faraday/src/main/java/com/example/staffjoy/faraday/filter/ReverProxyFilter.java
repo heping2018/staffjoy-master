@@ -51,6 +51,7 @@ public class ReverProxyFilter extends OncePerRequestFilter {
         this.mappingProvider = mappingProvider;
         this.preForwardRequestInterceptor = preForwardRequestInterceptor;
         this.requestExtractor = requestExtractor;
+        this.requstForwarder = requstForwarder;
     }
 
     @Override
