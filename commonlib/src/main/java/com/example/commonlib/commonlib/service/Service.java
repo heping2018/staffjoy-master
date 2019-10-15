@@ -15,7 +15,7 @@ public class Service {
     private int security;
     //是否是支持生产环境
     private boolean restrictDev;
-    //service查询
+    //service名称
     private String backendDomain;
     //是否缓存页面
     private boolean noCacheHtml;
