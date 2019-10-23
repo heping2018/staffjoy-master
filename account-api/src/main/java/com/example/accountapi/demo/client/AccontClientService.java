@@ -56,7 +56,8 @@ public class AccontClientService {
     }
     //是get请求 因为是requestparam
     public ListAccountResponse listAccounts(String auth,int offset,@Min(0) int limit){
-        URI uri = UriComponentsBuilder.fromUriString(url+path+"/create?offset={offset}&limit={limit}").build(offset,limit);
+        URI uri = UriComponentsBuilder.fromUriString(url+path+"/create?offset={offset}&limit={limit}").
+                build(offset,limit);
         RequestEntity<Void> requestEntity = createHeaderRequestGet(uri,auth);
         ResponseEntity<ListAccountResponse> listAccountResponse = restTemplate.exchange(requestEntity,ListAccountResponse.class);
         return listAccountResponse.getBody();
@@ -143,7 +144,8 @@ public class AccontClientService {
     private RequestEntity<Void> createHeaderRequestGet(URI uri,String auth){
         HttpHeaders headers = new HttpHeaders();
         headers.add(AuthConstant.AUTHORIZATION_HEADER,auth);
-        RequestEntity<Void> requestEntity = new RequestEntity<>(headers,HttpMethod.GET,uri);
+        RequestEntity<Void> requestEntity = new RequestEntity<>(
+                headers,HttpMethod.GET,uri);
         return requestEntity;
     }
 
